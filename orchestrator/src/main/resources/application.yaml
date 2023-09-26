@@ -1,0 +1,27 @@
+spring.cloud.stream:
+  function:
+    definition: processor;function
+  bindings:
+    processor-in-0:
+      destination: order-created-topic
+    processor-out-0:
+      destination: order-updated-topic
+    function-in-0:
+      destination: order-created-topic
+    function-out-0:
+      destination: order-updated-topic
+  kafka:
+    binder:
+      brokers:
+        - localhost:9092
+      replication-factor: 1
+
+
+service:
+  endpoints:
+    inventory: http://localhost:8083
+    payment: http://localhost:8082
+
+logging:
+  level:
+    com.neoflex.orchestration.orchestrator: DEBUG

@@ -1,0 +1,21 @@
+server:
+  port: 8081
+
+spring.cloud.stream:
+  function:
+    definition: supplier
+  bindings:
+    supplier-out-0:
+      destination: order-created-topic
+  kafka:
+    binder:
+      brokers:
+        - localhost:9092
+
+spring:
+  jpa:
+    defer-datasource-initialization: true
+
+logging:
+  level:
+    com.neoflex.orchestration.order: DEBUG
